@@ -1,6 +1,10 @@
-import cv2
+import cv2, os
 import numpy as np
-import os
+from rembg import remove
+from PIL import image
+
+
+#Para cartunizar a imagem selecionada:
 
 image = cv2.imread("foto.jpg")
 
@@ -21,14 +25,20 @@ else:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     
-    
-    
-    
-#Para testar se o caminho da foto que você colocou está correto.
-# image_path = "foto.jpg"
+#Para retirar o fundo da imagem (como um fundo preto ou paisagem):    
+input_img ='foto.jpg'
+output_img = 'output.png'
 
-# if os.path.exists(image_path):
-#     print("O arquivo existe.")
-# else:
-#     print("O arquivo não foi encontrado.")
+imput = image.open(input_img)
+output = remove(input)
+output.save(output_img)
+
+    
+#Para testar se o caminho da foto que você colocou está correto:
+image_path = "foto.jpg"
+
+if os.path.exists(image_path):
+    print("O arquivo existe.")
+else:
+    print("O arquivo não foi encontrado.")
 
